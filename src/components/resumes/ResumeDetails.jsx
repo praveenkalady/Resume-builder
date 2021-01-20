@@ -8,7 +8,7 @@ function ResumeDetails({ getResumeWithId,match,resume}) {
         if(id){
             getResumeWithId(id);
         }
-    },[])
+    },[match.params.id])
     return (
         <div className="d-flex justify-content-center">
             {resume &&
