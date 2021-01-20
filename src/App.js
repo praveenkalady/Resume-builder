@@ -1,27 +1,49 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import Navbar from './components/layouts/Navbar';
 import CreateResume from './components/resumes/CreateResume';
-import EditResume from './components/resumes/EditResume';
 import ViewResume from './components/resumes/ViewResume';
+import ResumeDetails from './components/resumes/ResumeDetails';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Footer from './components/layouts/Footer';
-
-function App() {
+import { connect } from 'react-redux';
+import { getResumes } from './actions/resumeActions';
+function App({ getResumes }) {
+    useEffect(()=>{
+        getResumes();
+    },[])
     return (
         <>
             <Router>
-                <Navbar/>
-                    <div className="container p-3">
+                <Navbar/>   
                     <Switch>
-                        <Route exact path="/create" component={CreateResume}/>
-                        <Route exact path="/edit" component={EditResume}/>
-                        <Route exact path="/view" component={ViewResume}/>
+                        <Route exact path="/" render={props=>(
+                            <>
+                                <div className="container p-3">
+                                <CreateResume {...props}/>
+                                </div>
+                                <Footer/>
+                            </>
+                        )}/>
+                        <Route exact path="/resumes" render={props=>(
+                            <>
+                            <div className="container p-3">
+                                <ViewResume {...props}/>
+                            </div>
+                                <Footer bottom/>
+                            </>
+                        )}/>
+                        <Route exact path="/resumes/:id" render={props=>(
+                            <>
+                                <div className="container p-3">
+                                <ResumeDetails {...props}/>
+                                </div>
+                                <Footer/>
+                            </>
+                        )}/>
                     </Switch>
-                    </div>
-                <Footer/>
             </Router>
         </>
     )
 }
 
-export default App;
+export default connect(null,{ getResumes })(App);

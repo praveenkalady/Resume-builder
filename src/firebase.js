@@ -1,7 +1,6 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 
-//Public configurations
 const firebaseConfig = {
     apiKey: "AIzaSyB1mLRVXlfNQ9qVM0tBCo6tcWni9UlWaWQ",
     authDomain: "resume-builder-3430e.firebaseapp.com",
@@ -12,12 +11,8 @@ const firebaseConfig = {
     measurementId: "G-8KSPJL6PGN"
   };
 
-firebase.initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+  const db = app.firestore()
 
-export default db;
-
-
-
-  
+  export default db;

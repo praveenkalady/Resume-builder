@@ -3,7 +3,7 @@ import { Controller} from 'react-hook-form';
 import classnames from 'classnames';
 
 
-function TextField({ name,type,label,control,placeholder,required,errors,pattern,message,value }) {
+function TextArea({ name,type,label,control,placeholder,required,errors,pattern,message }) {
     return (
         <>
         <div className="form-group">
@@ -11,7 +11,7 @@ function TextField({ name,type,label,control,placeholder,required,errors,pattern
            <Controller
                 name={name}
                 as={
-                    <input placeholder={placeholder} type={type} name={name} className={classnames('form-control',{'is-invalid': errors && errors[name] ? true : false})} value={value} />
+                    <textarea rows="3" placeholder={placeholder} type={type} name={name} className={classnames('form-control',{'is-invalid': errors && errors[name] ? true : false})} value={''} />
                 }
                 control={control}
                 defaultValue=""
@@ -33,4 +33,4 @@ function TextField({ name,type,label,control,placeholder,required,errors,pattern
     )
 }
 
-export default TextField;
+export default TextArea;

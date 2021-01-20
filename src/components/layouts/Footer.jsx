@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import classnames from 'classnames';
 
-function Footer() {
+function Footer({ bottom }) {
     return (
-        <footer className="bg-light p-3">
+        <footer className={classnames('bg-light p-3 ',{
+            'fixed-bottom':bottom
+        })}>
             <p className="text-center">Copyright &copy; 2021 All Rights Reserved Resume Builder.</p>
         </footer>
     )
 }
 
-export default Footer
+export default Footer;
